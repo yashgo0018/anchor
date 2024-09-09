@@ -194,7 +194,7 @@ Initializes a project workspace with the following structure.
 - `programs/`: Directory for Solana program crates.
 - `app/`: Directory for your application frontend.
 - `tests/`: Directory for JavaScript integration tests.
-- `migrations/deploy.js`: Deploy script.
+- `migrations/deploy.ts`: Deploy script.
 
 ## Migrate
 
@@ -202,19 +202,20 @@ Initializes a project workspace with the following structure.
 anchor migrate
 ```
 
-Runs the deploy script located at `migrations/deploy.js`, injecting a provider configured
+Runs the deploy script located at `migrations/deploy.ts`, injecting a provider configured
 from the workspace's `Anchor.toml`. For example,
 
-```javascript
-// File: migrations/deploys.js
+```typescript
+// File: migrations/deploy.ts
 
-const anchor = require('@coral-xyz/anchor')
+import * as anchor from "@coral-xyz/anchor";
 
-module.exports = async function (provider) {
-  anchor.setProvider(provider)
+module.exports = async function (provider: anchor.Provider) {
+  // Configure client to use the provider.
+  anchor.setProvider(provider);
 
   // Add your deploy script here.
-}
+};
 ```
 
 Migrations are a new feature
